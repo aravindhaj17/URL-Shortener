@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        /* Center everything */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+
+        /* Heading style */
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input field */
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Button style */
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Optional: container for better spacing */
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>URL Shortener</h1>
+
+    <!-- Form to submit URL -->
+    <form action="/shorten" method="POST">
+        <input type="text" name="long_url" placeholder="Enter URL" required>
+        <br>
+        <button type="submit">Shorten URL</button>
+    </form>
+
+    <!-- Display the shortened URL -->
+    {% if short_url %}
+        <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+        <a href="{{ url_for('edit_short', url_id=new_url.id) }}">
+            <button type="button">Edit URL</button>
+        </a>
+    {% endif %}
+
+    <!-- Button to view history -->
+    <a href="/history">
+        <button type="button">View History</button>
+    </a>
+</div>
+
+    
+</body>
+</html>
